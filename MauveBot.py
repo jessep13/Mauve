@@ -2,7 +2,7 @@ import discord
 from discord.ext import commands
 
 # Replace 'TOKEN' with your bot's token
-TOKEN = 'MTI0OTM3MjM1NDUyNjg0Mjk1MA.GGndBa.e2JBOeNXq4jcEdWeWs6EJZmg3aPTDU5DZ5kLlk'
+TOKEN = 'place token here'
 
 # Add role names here
 role_remove = "LegacyPronoun"
