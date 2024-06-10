@@ -2,7 +2,7 @@ import discord
 from discord.ext import commands
 
 # Replace 'TOKEN' with your bot's token
-TOKEN = 'place token here'
+TOKEN = 'token'
 
 # Add role names here
 role_remove = "LegacyPronoun"
@@ -15,7 +15,7 @@ intents.message_content = True
 
 description = '''You probably shouldn't use this if you don't know what it does.
 
-En masse role replacer made by catgirlandamoth (Sadie). Special thanks to Astra and Pea for the help! '''
+En masse role replacer made by catgirlandamoth (Sadie). Special thanks to Astra, Pea and everyone else for the help! '''
 
 bot = commands.Bot(command_prefix='m;', description=description, intents=intents)
 
@@ -23,6 +23,15 @@ bot = commands.Bot(command_prefix='m;', description=description, intents=intents
 async def on_ready():
     print(f'Logged in as {bot.user} (ID: {bot.user.id})')
     print('------')
+
+@bot.event
+async def on_command_error(ctx, error):
+    if isinstance(error, discord.ext.commands.errors.MissingRole) and "Role 'MauvePermissions' is required to run this command" in str(error):
+        await ctx.send("I'm pretty sure you shouldn't be messing with this <3 (Lacking MauvePermissions role)")
+
+@bot.command()
+async def ping(ctx):
+     await ctx.send(f'Pong! {round(bot.latency * 1000)}ms')
 
 @bot.command(pass_context=True)
 @commands.has_role("MauvePermissions")
